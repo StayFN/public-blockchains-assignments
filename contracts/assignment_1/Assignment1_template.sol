@@ -39,7 +39,7 @@ contract Assignment1 is INFTMINTER, ERC721URIStorage, BaseAssignment {
     
     // TODO: 
     // Add the ipfs hash of an image that you uploaded to IPFS.
-    string IPFSHash = "";
+    string IPFSHash = "QmXf3vfHe6JjLdGAj1cFH5H1JVGox5DrAiYz44U9Rw3gvU";
 
     // Total supply.
     uint256 public totalSupply;
@@ -85,6 +85,34 @@ contract Assignment1 is INFTMINTER, ERC721URIStorage, BaseAssignment {
         // Hint: Open Zeppelin has a method for this.
         
         // 7. Return the NFT id.
+    }
+
+    function flipSaleStatus() public override {
+        require(msg.sender == _owner, "Only owner can flip sale status");
+        price = price == 0 ? 0.001 ether : 0;
+    }
+
+    function getSaleStatus() public view override returns (bool) {
+        return price > 0;
+    }
+
+    function withdraw(uint256 amount) public override {
+        require(msg.sender == _owner, "Only owner can withdraw");
+        require(address(this).balance >= amount, "Not enough balance");
+
+        payable(_owner).transfer(amount);
+    }
+
+    function getPrice() public view override returns (uint256) {
+        return price;
+    }
+
+    function getTotalSupply() public view override returns (uint256) {
+        return totalSupply;
+    }
+
+    function getIPFSHash() public view override returns (string memory) {
+        return IPFSHash;
     }
 
 
