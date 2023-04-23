@@ -12,10 +12,11 @@ coverage.json
 typechain
 typechain-types
 
-contracts/assignment_1/Assignment1.sol
-scripts/assignment_1/interact.js
+#contracts/assignment_1/Assignment1.sol
+#scripts/assignment_1/interact.js
 
-assignment_2
+contracts/assignment_2/
+
 assignment_3
 assignment_4
 
